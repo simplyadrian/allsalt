@@ -1,22 +1,40 @@
-FROM ubuntu:16.04
+FROM debian:jessie
 MAINTAINER Adrian Herrera <simplyadrian@gmail.com>
+
+ENV docker_version 17.06.0
+ENV salt_version 2017.7.1
+ADD ./git-lfs_1.4.4_amd64.deb /git-lfs_1.4.4_amd64.deb
 
 # Update System and install packages
 RUN apt-get update && \
     apt-get upgrade -y -o DPkg::Options::=--force-confold &&\
     apt-get install -qq -y --no-install-recommends --no-install-suggests \
-                    wget &&\
-	wget --no-check-certificate -O - https://repo.saltstack.com/apt/ubuntu/16.04/amd64/latest/SALTSTACK-GPG-KEY.pub | apt-key add - &&\
-	echo "deb http://repo.saltstack.com/apt/ubuntu/16.04/amd64/latest xenial main" >> \
-	/etc/apt/sources.list.d/saltstack.list &&\
-	apt-get update &&\
-	apt-get install -y \
-    salt-master \
-	salt-minion \
-    salt-cloud \
-    salt-ssh \
-    salt-api &&\
-	apt-get clean &&\
+                    apt-transport-https \
+                    ca-certificates \
+                    curl \
+                    gnupg2 \
+                    software-properties-common \
+                    git \
+                    make &&\
+    curl -fsSL  https://repo.saltstack.com/apt/debian/8/amd64/latest/SALTSTACK-GPG-KEY.pub | apt-key add - &&\
+    echo "deb http://repo.saltstack.com/apt/debian/8/amd64/latest jessie main" >> \
+    /etc/apt/sources.list.d/saltstack.list &&\
+    curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add - &&\
+    add-apt-repository \
+    "deb [arch=amd64] https://download.docker.com/linux/debian \
+    $(lsb_release -cs) \
+    stable" &&\
+    apt-get update &&\
+    dpkg -i /git-lfs_1.4.4_amd64.deb &&\
+    apt-get install -f &&\
+    apt-get install -y \
+                    salt-master=${salt_version}+ds-1 \
+                    salt-minion=${salt_version}+ds-1 \
+                    salt-cloud=${salt_version}+ds-1 \
+                    salt-ssh=${salt_version}+ds-1 \
+                    salt-api=${salt_version}+ds-1 \
+                    docker-ce=${docker_version}~ce-0~debian &&\
+    apt-get clean &&\
     rm -rf /var/lib/apt/lists/*
 
 # Volumes
