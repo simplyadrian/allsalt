@@ -7,27 +7,25 @@ ADD ./git-lfs_1.4.4_amd64.deb /git-lfs_1.4.4_amd64.deb
 
 # Update System and install packages
 RUN apt-get update && \
-    apt-get upgrade -y -o DPkg::Options::=--force-confold &&\
+    apt-get upgrade -y -o Dpkg::Options::=--force-confdef \
+                       -o DPkg::Options::=--force-confold &&\
     apt-get install -qq -y --no-install-recommends --no-install-suggests \
                     apt-transport-https \
                     ca-certificates \
                     curl \
-                    gnupg2 \
-                    software-properties-common \
                     git \
                     make &&\
-    curl -fsSL  https://repo.saltstack.com/apt/debian/8/amd64/latest/SALTSTACK-GPG-KEY.pub | apt-key add - &&\
+    curl -fsSL  https://repo.saltstack.com/apt/debian/8/amd64/latest/SALTSTACK-GPG-KEY.pub \
+    | apt-key add - &&\
     echo "deb http://repo.saltstack.com/apt/debian/8/amd64/latest jessie main" >> \
     /etc/apt/sources.list.d/saltstack.list &&\
     curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add - &&\
-    add-apt-repository \
-    "deb [arch=amd64] https://download.docker.com/linux/debian \
-    $(lsb_release -cs) \
-    stable" &&\
+    echo "deb https://download.docker.com/linux/debian jessie stable" >> \
+    /etc/apt/sources.list.d/docker.list &&\
     apt-get update &&\
     dpkg -i /git-lfs_1.4.4_amd64.deb &&\
-    apt-get install -f &&\
-    apt-get install -y \
+    apt-get install -f -qq -y --no-install-recommends --no-install-suggests &&\
+    apt-get install -y -qq -y --no-install-recommends --no-install-suggests \
                     salt-master=${salt_version}+ds-1 \
                     salt-minion=${salt_version}+ds-1 \
                     salt-cloud=${salt_version}+ds-1 \
@@ -38,7 +36,8 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 
 # Volumes
-VOLUME ["/etc/salt/pki", "/var/cache/salt", "/var/logs/salt", "/etc/salt/master.d", "/srv/salt"]
+VOLUME ["/etc/salt/pki", "/var/cache/salt", "/var/logs/salt", \
+        "/etc/salt/master.d", "/srv/salt"]
 
 # Add Run File
 ADD run.sh /usr/local/bin/run.sh
