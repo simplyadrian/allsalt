@@ -10,11 +10,11 @@ RUN apt-get update && \
     apt-get upgrade -y -o Dpkg::Options::=--force-confdef \
                        -o DPkg::Options::=--force-confold &&\
     apt-get install -qq -y --no-install-recommends --no-install-suggests \
-                    apt-transport-https \
-                    ca-certificates \
-                    curl \
-                    git \
-                    make &&\
+                    apt-transport-https=1.0.9.8.4 \
+                    ca-certificates=20141019+deb8u3 \
+                    curl=7.38.0-4+deb8u5 \
+                    git=1:2.1.4-2.1+deb8u4 \
+                    make=4.0-8.1 &&\
     curl -fsSL  https://repo.saltstack.com/apt/debian/8/amd64/latest/SALTSTACK-GPG-KEY.pub \
     | apt-key add - &&\
     echo "deb http://repo.saltstack.com/apt/debian/8/amd64/latest jessie main" >> \
