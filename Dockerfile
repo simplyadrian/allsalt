@@ -13,7 +13,7 @@ RUN apt-get update && \
                     apt-transport-https=1.0.9.8.4 \
                     ca-certificates=20141019+deb8u3 \
                     curl=7.38.0-4+deb8u5 \
-                    git=1:2.1.4-2.1+deb8u4 \
+                    git=1:2.1.4-2.1+deb8u5 \
                     make=4.0-8.1 &&\
     curl -fsSL  https://repo.saltstack.com/apt/debian/8/amd64/latest/SALTSTACK-GPG-KEY.pub \
     | apt-key add - &&\
