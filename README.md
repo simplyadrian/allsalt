@@ -61,7 +61,12 @@ These ports allow minions to communicate with the Salt Master.
 
 ## Running Salt Commands
 
-
+    # Exec into a running container (replace simplyadrian/allsalt with the
+    actual container id)
     $ docker exec -it simplyadrian/allsalt bash
+    # ping all attached minions
     $ root@CONTAINER_ID:~# salt '*' test.ping
+    # return any grains (facts) set locally.
     $ root@CONTAINER_ID:~# salt '*' grains.items
+    # run any attached salt states found in /srv/salt
+    $ root@CONTAINER_ID:~# salt '*' state.apply
