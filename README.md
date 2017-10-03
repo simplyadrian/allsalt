@@ -1,7 +1,7 @@
 # Simple Tags
 
 -	[`centos7`, `latest`: (*centos7/Dockerfile*)](https://github.com/simplyadrian/allsalt/blob/master/centos/Dockerfile)
--	[`debian_jessie`, `latest`: (*debian_jessie/Dockerfile*)](https://github.com/simplyadrian/allsalt/blob/master/debian/Dockerfile)
+-	[`debian_jessie`: (*debian_jessie/Dockerfile*)](https://github.com/simplyadrian/allsalt/blob/master/debian/Dockerfile)
 
 # AllSalt
 
