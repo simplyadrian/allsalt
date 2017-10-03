@@ -1,4 +1,9 @@
-# Docker AllSalt
+# Simple Tags
+
+-	[`centos7`, `latest`: (*centos7/Dockerfile*)](https://github.com/simplyadrian/allsalt/blob/master/centos/Dockerfile)
+-	[`debian_jessie`, `latest`: (*debian_jessie/Dockerfile*)](https://github.com/simplyadrian/allsalt/blob/master/debian/Dockerfile)
+
+# AllSalt
 
 A Docker image which allows you to run a containerised Salt-Master and Minion server.
 Includes:
@@ -12,7 +17,7 @@ Includes:
 
 You can easily run the container like so:
 
-    docker run -d -v /path/to/salt/states:/srv/salt simplyadrian/allsalt
+    docker run -d -v /path/to/salt/states:/srv/salt simplyadrian/allsalti:${tag}
 
 ## Volumes
 
@@ -32,7 +37,8 @@ To create a data container you are going to want the thinnest possible docker
 image, simply run this docker command, which will download the simplest possible
 docker image:
 
-    docker run -v /etc/salt/pki -v /var/salt/cache -v /var/logs/salt -v /etc/salt/master.d -v /srv/salt --name salt-master-data busybox true
+    docker run -v /etc/salt/pki -v /var/salt/cache -v /var/logs/salt
+    -v /etc/salt/master.d -v /srv/salt --name salt-master-data busybox true
 
 This will create a stopped container wwith the name of `salt-master-data` and
 will hold our persistant salt master data. Now we just need to run our master
@@ -46,7 +52,9 @@ To share folders on your local system so you can have your own master
 configuration, states, pillars etc just alter the `salt-master-data`
 command:
 
-    docker run -v /etc/salt/pki -v /var/salt/cache -v /var/logs/salt -v /path/to/local:/etc/salt/master.d -v /path/to/local:/srv/salt --name salt-master-data busybox true
+    docker run -v /etc/salt/pki -v /var/salt/cache -v /var/logs/salt
+    -v /path/to/local:/etc/salt/master.d -v /path/to/local:/srv/salt
+    --name salt-master-data busybox true
 
 Now `/path/to/local` can hold your states and master configuration.
 
@@ -59,7 +67,7 @@ The following ports are exposed:
 
 These ports allow minions to communicate with the Salt Master.
 
-## Running Salt Commands
+## Running Salt Commands: EXAMPLES
 
     # Exec into a running container (replace simplyadrian/allsalt with the
     actual container id)
