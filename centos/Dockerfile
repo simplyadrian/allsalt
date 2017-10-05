@@ -1,6 +1,6 @@
 FROM centos:centos7
 
-MAINTAINER Adrian Herrera <aherrera@mgage.com>
+MAINTAINER Adrian Herrera <adrian.herrera@intuitivetech.com>
 
 ENV salt_version 2017.7.1
 
