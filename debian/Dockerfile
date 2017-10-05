@@ -1,5 +1,5 @@
 FROM debian:jessie
-MAINTAINER Adrian Herrera <simplyadrian@gmail.com>
+MAINTAINER Adrian Herrera <adrian.herrera@intuitivetech.com>
 
 ENV docker_version 17.06.0
 ENV salt_version 2017.7.1
