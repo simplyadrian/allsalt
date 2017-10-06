@@ -42,12 +42,11 @@ RUN yum install -y \
 	            salt-api-${salt_version}
 
 # Install ansible and its dependencies
-RUN pip install  setuptools==11.3.0 boto3 boto virtualenv==13.1.2 credstash==1.11.0 &&\
+RUN pip install pyaml setuptools boto3 boto virtualenv credstash &&\
     yum clean all && rm -rf /tmp/* /var/tmp/*
 
 # Volumes
-VOLUME ["/etc/salt/pki", "/var/cache/salt", "/var/logs/salt", \
-        "/etc/salt/master.d", "/srv/salt"]
+VOLUME ["/etc/salt/pki", "/var/cache/salt", "/var/logs/salt", "/srv/salt"]
 
 # Add Run File
 ADD run.sh /usr/local/bin/run.sh
