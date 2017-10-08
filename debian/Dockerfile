@@ -36,8 +36,7 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 
 # Volumes
-VOLUME ["/etc/salt/pki", "/var/cache/salt", "/var/logs/salt", \
-        "/etc/salt/master.d", "/srv/salt"]
+VOLUME ["/etc/salt/pki", "/var/logs/salt", "/srv/salt"]
 
 # Add Run File
 ADD run.sh /usr/local/bin/run.sh

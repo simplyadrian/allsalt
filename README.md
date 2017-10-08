@@ -26,9 +26,7 @@ described here: https://docs.docker.com/userguide/dockervolumes/. The following
 volumes can be mounted:
 
  * `/etc/salt/pki` - This holds the Salt Minion authentication keys
- * `/var/cache/salt` - Job and Minion data cache
  * `/var/logs/salt` - Salts log directory
- * `/etc/salt/master.d` - Master configuration include directory
  * `/srv/salt` - Holds your states, pillars etc
 
 ### Data Container
