@@ -2,7 +2,7 @@ FROM centos:centos7
 
 MAINTAINER Adrian Herrera <adrian.herrera@intuitivetech.com>
 
-ENV salt_version 2017.7.1
+ENV salt_version 2017.7.2-1.el7.noarch
 
 # Add salt repositories and install dependencies
 RUN yum -y update && \
@@ -10,6 +10,7 @@ RUN yum -y update && \
                 https://repo.saltstack.com/yum/redhat/salt-repo-latest-2.el7.noarch.rpm \
                 gcc \
                 libffi-devel \
+                python \
                 python-devel \
                 bzip2-devel \
                 git \
@@ -19,15 +20,6 @@ RUN yum -y update && \
                 zlib-devel \
                 tar &&\
 	yum clean expire-cache
-
-# Install python2.7
-RUN cd /tmp && \
-    curl https://www.python.org/ftp/python/2.7.13/Python-2.7.13.tgz -O && \
-    tar xvfz Python-2.7.13.tgz && \
-    cd Python-2.7.13 && \
-    ./configure --prefix=/usr/local && \
-    make && \
-    make altinstall
 
 # Install setuptools + pip
 RUN cd /tmp && \
