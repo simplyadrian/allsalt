@@ -17,17 +17,7 @@ Includes:
 
 You can easily run the container like so:
 
-    docker run -d -v /path/to/salt/states:/srv/salt simplyadrian/allsalti:${tag}
-
-## Volumes
-
-There are several volumes which can be mounted to Docker data container as
-described here: https://docs.docker.com/userguide/dockervolumes/. The following
-volumes can be mounted:
-
- * `/etc/salt/pki` - This holds the Salt Minion authentication keys
- * `/var/logs/salt` - Salts log directory
- * `/srv/salt` - Holds your states, pillars etc
+    docker run -d -v /path/to/salt/states:/srv/salt simplyadrian/allsalt:${tag}
 
 ### Data Container
 
@@ -38,7 +28,7 @@ docker image:
     docker run -v /etc/salt/pki -v /var/salt/cache -v /var/logs/salt
     -v /etc/salt/master.d -v /srv/salt --name salt-master-data busybox true
 
-This will create a stopped container wwith the name of `salt-master-data` and
+This will create a stopped container with the name of `salt-master-data` and
 will hold our persistant salt master data. Now we just need to run our master
 container with the `--volumes-from` command:
 

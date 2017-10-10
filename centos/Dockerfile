@@ -37,9 +37,6 @@ RUN yum install -y \
 RUN pip install pyaml setuptools boto3 boto virtualenv credstash &&\
     yum clean all && rm -rf /tmp/* /var/tmp/*
 
-# Volumes
-VOLUME ["/etc/salt/pki", "/var/logs/salt", "/srv/salt"]
-
 # Add Run File
 ADD run.sh /usr/local/bin/run.sh
 RUN chmod +x /usr/local/bin/run.sh
