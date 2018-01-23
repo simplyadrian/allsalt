@@ -1,17 +1,32 @@
 # Simple Tags
 
--	[`centos7`, `latest`: (*centos7/Dockerfile*)](https://github.com/simplyadrian/allsalt/blob/master/centos/Dockerfile)
--	[`debian_jessie`: (*debian_jessie/Dockerfile*)](https://github.com/simplyadrian/allsalt/blob/master/debian/Dockerfile)
+- [`centos7`, `latest`: (*centos7/Dockerfile*)](https://github.com/simplyadrian/allsalt/blob/master/centos/Dockerfile)
+- [`debian_jessie`: (*debian_jessie/Dockerfile*)](https://github.com/simplyadrian/allsalt/blob/master/debian/Dockerfile)
 
 # AllSalt
 
 A Docker image which allows you to run a containerised Salt-Master and Minion server.
 Includes:
- * salt-ssh
- * salt-api
- * salt-cloud
- * salt-master
- * salt-minion
+
+* salt-ssh
+* salt-api
+* salt-cloud
+* salt-master
+* salt-minion
+
+## Build the container
+
+#### centos image
+
+```bash
+make build-centos
+```
+
+#### debian image
+
+```bash
+make build-debian
+```
 
 ## Running the Container
 
@@ -57,12 +72,14 @@ These ports allow minions to communicate with the Salt Master.
 
 ## Running Salt Commands: EXAMPLES
 
-    # Exec into a running container (replace simplyadrian/allsalt with the
-    actual container id)
-    $ docker exec -it simplyadrian/allsalt bash
-    # ping all attached minions
-    $ root@CONTAINER_ID:~# salt '*' test.ping
-    # return any grains (facts) set locally.
-    $ root@CONTAINER_ID:~# salt '*' grains.items
-    # run any attached salt states found in /srv/salt
-    $ root@CONTAINER_ID:~# salt '*' state.apply
+```bash
+# Exec into a running container (replace simplyadrian/allsalt with the
+actual container id)
+$ docker exec -it simplyadrian/allsalt bash
+# ping all attached minions
+$ root@CONTAINER_ID:~# salt '*' test.ping
+# return any grains (facts) set locally.
+$ root@CONTAINER_ID:~# salt '*' grains.items
+# run any attached salt states found in /srv/salt
+$ root@CONTAINER_ID:~# salt '*' state.apply
+```
