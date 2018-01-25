@@ -1,11 +1,6 @@
-# Simple Tags
-
-- [`centos7`, `latest`: (*centos7/Dockerfile*)](https://github.com/simplyadrian/allsalt/blob/master/centos/Dockerfile)
-- [`debian_jessie`: (*debian_jessie/Dockerfile*)](https://github.com/simplyadrian/allsalt/blob/master/debian/Dockerfile)
-
 # AllSalt
 
-A Docker image which allows you to run a containerised Salt-Master and Minion server.
+A Docker image which allows you to run a containerised `salt-master/minion` server.
 Includes:
 
 * `salt-ssh`
@@ -14,7 +9,23 @@ Includes:
 * `salt-master`
 * `salt-minion`
 
-## Building Containers
+---
+
+* [Simple Tags](#simple-tags)
+* [Building Containers](#building-containers)
+* [Running a Container](#running-container)
+* [Ports](#ports)
+* [Examples](#examples)
+
+---
+
+## <a name="simple-tags"></a> Simple Tags
+
+- [`centos7`, `latest`: (*centos7/Dockerfile*)](https://github.com/simplyadrian/allsalt/blob/master/centos/Dockerfile)
+- [`debian_jessie`: (*debian_jessie/Dockerfile*)](https://github.com/simplyadrian/allsalt/blob/master/debian/Dockerfile)
+
+
+## <a name="building-containers"></a> Building Containers
 
 ### Centos
 
@@ -52,7 +63,8 @@ make build-ubuntu
 make build-ubuntu-minion
 ```
 
-## Running the Container
+
+## <a name="running-container"></a> Running a Container
 
 You can easily run the container like so:
 
@@ -85,7 +97,8 @@ command:
 
 Now `/path/to/local` can hold your states and master configuration.
 
-## Ports
+
+## <a name="ports"></a> Ports
 
 The following ports are exposed:
 
@@ -94,7 +107,10 @@ The following ports are exposed:
 
 These ports allow minions to communicate with the Salt Master.
 
-## Running Salt Commands: EXAMPLES
+
+## <a name="examples"></a> Examples
+
+### Running Salt Commands
 
 ```bash
 # Exec into a running container (replace simplyadrian/allsalt with the
@@ -106,4 +122,44 @@ $ root@CONTAINER_ID:~# salt '*' test.ping
 $ root@CONTAINER_ID:~# salt '*' grains.items
 # run any attached salt states found in /srv/salt
 $ root@CONTAINER_ID:~# salt '*' state.apply
+```
+
+
+### Master/Minion Test Environment Example
+
+#### setup the file system
+
+```bash
+mkdir -p master/{master.d,srv}
+mkdir -p minion/minion.d
+```
+
+#### start master container:
+
+```bash
+docker run --rm -d \
+    -v $(pwd)/master/master.d:/etc/salt/master.d \
+    -v $(pwd)/master/srv:/srv \
+    -h dev-salt-master \
+    --name dev-salt-master \
+    simplyadrian/allsalt:debian_jessie
+```
+
+##### start minion container:
+
+```bash
+docker run --rm -d \
+    -v $(pwd)/minion/minion.d:/etc/salt/minion.d \
+    -h dev-ubuntu-minion \
+    --name dev-ubuntu-minion \
+    simplyadrian/allsalt/minion:ubuntu_latest
+```
+
+#### Accept the keys:
+
+```bash
+docker exec -it dev-salt-master bash
+salt-key
+salt-key -A -y
+salt \* test.ping
 ```
