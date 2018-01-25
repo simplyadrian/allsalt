@@ -8,24 +8,48 @@
 A Docker image which allows you to run a containerised Salt-Master and Minion server.
 Includes:
 
-* salt-ssh
-* salt-api
-* salt-cloud
-* salt-master
-* salt-minion
+* `salt-ssh`
+* `salt-api`
+* `salt-cloud`
+* `salt-master`
+* `salt-minion`
 
-## Build the container
+## Building Containers
 
-#### centos image
+### Centos
+
+##### centos master
 
 ```bash
 make build-centos
 ```
 
-#### debian image
+##### centos minion
+
+```bash
+make build-centos-minion
+```
+
+### Debian
+
+##### debian master
 
 ```bash
 make build-debian
+```
+
+### Ubuntu
+
+##### ubuntu master
+
+```bash
+make build-ubuntu
+```
+
+##### ubuntu minion
+
+```bash
+make build-ubuntu-minion
 ```
 
 ## Running the Container
