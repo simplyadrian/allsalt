@@ -13,19 +13,12 @@ Includes:
 
 ---
 
-* [Simple Tags](#simple-tags)
 * [Building Containers](#building-containers)
 * [Running a Container](#running-container)
 * [Ports](#ports)
 * [Examples](#examples)
 
 ---
-
-## <a name="simple-tags"></a> Simple Tags
-
-- [`centos7`, `latest`: (*centos7/Dockerfile*)](https://github.com/simplyadrian/allsalt/blob/master/centos/Dockerfile)
-- [`debian_jessie`: (*debian_jessie/Dockerfile*)](https://github.com/simplyadrian/allsalt/blob/master/debian/Dockerfile)
-
 
 ## <a name="building-containers"></a> Building Containers
 
@@ -59,12 +52,23 @@ make build-debian
 make build-ubuntu
 ```
 
+##### ubuntu master 2016
+
+```bash
+make build-ubuntu-2016
+```
+
 ##### ubuntu minion
 
 ```bash
 make build-ubuntu-minion
 ```
 
+### ALL
+
+```bash
+make all
+```
 
 ## <a name="running-container"></a> Running a Container
 
