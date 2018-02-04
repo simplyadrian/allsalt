@@ -13,12 +13,23 @@ Includes:
 
 ---
 
+* [Simple Tags](#simple-tags)
 * [Building Containers](#building-containers)
 * [Running a Container](#running-container)
 * [Ports](#ports)
 * [Examples](#examples)
 
 ---
+
+## <a name="simple-tags"></a> Simple Tags
+
+- [`centos_master_2017.7.2`: (*centos_master_2017.7.2/Dockerfile*)](https://github.com/simplyadrian/allsalt/blob/master/centos/master/Dockerfile)
+- [`centos_minion_2017.7.2`: (*centos_minion_2017.7.2/Dockerfile*)](https://github.com/simplyadrian/allsalt/blob/master/centos/minion/Dockerfile)
+- [`debian_master_2017.7.2`: (*debian_master_2017.7.2/Dockerfile*)](https://github.com/simplyadrian/allsalt/blob/master/debian/Dockerfile)
+- [`ubuntu_master_2017.7.2`: (*ubuntu_master_2017.7.2/Dockerfile*)](https://github.com/simplyadrian/allsalt/blob/master/ubuntu/master-xenial/Dockerfile)
+- [`ubuntu_master_2016.11.3`: (*ubuntu_master_2016.11.3/Dockerfile*)](https://github.com/simplyadrian/allsalt/blob/master/ubuntu/master-2016.11.3/Dockerfile)
+- [`ubuntu_minion_2017.7.2`: (*ubuntu_minion_2017.7.2/Dockerfile*)](https://github.com/simplyadrian/allsalt/blob/master/ubuntu/minion/Dockerfile)
+
 
 ## <a name="building-containers"></a> Building Containers
 
