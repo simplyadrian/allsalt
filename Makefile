@@ -1,14 +1,37 @@
-build-centos:
-	docker build -t simplyadrian/allsalt:centos7 centos/master/
-build-centos-minion:
-	docker build -t simplyadrian/allsalt/minion:centos7 centos/minion/
+# HELP
+# This will output the help for each task
+# thanks to https://marmelab.com/blog/2016/02/29/auto-documented-makefile.html
+.PHONY: help
 
-build-debian:
-	docker build -t simplyadrian/allsalt:debian_jessie debian/
+help: ## This help.
+	@awk 'BEGIN {FS = ":.*?## "} /^[a-zA-Z_-]+:.*?## / {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}' $(MAKEFILE_LIST)
 
-build-ubuntu:
-	docker build -t simplyadrian/allsalt:ubuntu_xenial ubuntu/master-xenial/
-build-ubuntu-2016:
-	docker build -t simplyadrian/allsalt:ubuntu_2016 ubuntu/master-2016.11.3/
-build-ubuntu-minion:
-	docker build -t simplyadrian/allsalt/minion:ubuntu_latest ubuntu/minion/
+.DEFAULT_GOAL := help
+
+# DOCKER TASKS
+# Build the container
+build-centos: ## build and publish a centos image with salt master.
+	docker build -t simplyadrian/allsalt/centos/master:2017.7.2 centos/master/
+		docker push simplyadrian/allsalt/centos/master:2017.7.2
+
+build-centos-minion: ## build and publish a centos image with only a salt minion.
+	docker build -t simplyadrian/allsalt/centos/minion:2017.7.2 centos/minion/ &&\
+		docker push simplyadrian/allsalt/centos/minion:2017.7.2
+
+build-debian: ## build and publish a debian image with a salt master.
+	docker build -t simplyadrian/allsalt/debian/master:2017.7.2 debian/ &&\
+		docker push simplyadrian/allsalt/debian/master:2017.7.2
+
+build-ubuntu: ## build and publish a ubuntu image with a salt master.
+	docker build -t simplyadrian/allsalt/ubuntu/master:2017.7.2 ubuntu/master-xenial/ &&\
+		docker push simplyadrian/allsalt/ubuntu/master:2017.7.2
+
+build-ubuntu-2016: ## build and publish a ubuntu image with a salt master version 2016.11.3.
+	docker build -t simplyadrian/allsalt/ubuntu/master:2016.11.3 ubuntu/master-2016.11.3/ &&\
+		docker push simplyadrian/allsalt/ubuntu/master:2016.11.3
+
+build-ubuntu-minion: ## build and publish a ubuntu image with a salt minion only.
+	docker build -t simplyadrian/allsalt/ubuntu/minion:2017.7.2 ubuntu/minion/ &&\
+		docker push simplyadrian/allsalt/ubuntu/minion:2017.7.2
+
+all: build-centos build-centos-minion build-debian build-ubuntu build-ubuntu-2016 build-ubuntu-minion ## build and publish all to Dockerhub.

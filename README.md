@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/intuitivetechnologygroup/allsalt.svg?branch=master)](https://travis-ci.org/intuitivetechnologygroup/allsalt)
+
 # AllSalt
 
 A Docker image which allows you to run a containerised `salt-master/minion` server.
