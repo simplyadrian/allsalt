@@ -34,4 +34,22 @@ build-ubuntu-minion: ## build and publish a ubuntu image with a salt minion only
 	docker build -t simplyadrian/allsalt:ubuntu_minion_2017.7.2 ubuntu/minion/
 	@echo 'publish ubuntu_minion_2017.7.2 to simplyadrian/allsalt with Dockerhub autobuild'
 
+test-build-centos: build-centos
+	docker rmi simplyadrian/allsalt:centos_master_2017.7.2
+
+test-build-centos-minion: build-centos-minion
+	docker rmi simplyadrian/allsalt:centos_minion_2017.7.2
+
+test-build-debian: build-debian
+	docker rmi simplyadrian/allsalt:debian_master_2017.7.2
+
+test-build-ubuntu: build-ubuntu
+	docker rmi simplyadrian/allsalt:ubuntu_master_2017.7.2
+
+test-build-ubuntu-2016: build-ubuntu-2016
+	docker rmi simplyadrian/allsalt:ubuntu_master_2016.11.3
+
+test-build-ubuntu-minion: build-ubuntu-minion
+	docker rmi simplyadrian/allsalt:ubuntu_minion_2017.7.2
+
 all: build-centos build-centos-minion build-debian build-ubuntu build-ubuntu-2016 build-ubuntu-minion ## build and publish all to Dockerhub with autobuild.
