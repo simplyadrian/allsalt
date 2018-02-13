@@ -1,17 +1,24 @@
+env:
+  matrix:
+    - MAKE_JOB_ID: build-centos
+    - MAKE_JOB_ID: build-centos-minion
+    - MAKE_JOB_ID: build-debian
+    - MAKE_JOB_ID: build-ubuntu
+    - MAKE_JOB_ID: build-ubuntu-2016
+    - MAKE_JOB_ID: build-ubuntu-minion
 notifications:
   email:
     recipients:
-    - adrian.herrera@intuitivetech.com
-    - megan.wood@intuitivetech.com
-    - andrew.johnson@intuitivetech.com
+    - devops@intuitivetech.com
     on_success: never
     on_failure: always
   slack:
     rooms:
       - secure: QDo4sNJl1r47d950dPr0eaR56ubuYxmhD9O5jNcPugrvmxBexQhSXRP7A7oh23l262G0acKcgGppZ+zFzX6eEyiUEvjp5q5j8pCxQH9/JDYasQ3PuZ4LQS10Ep+MFlNzWLTsj8TI43gLZpnVuM+XtVvNzUmBpjxoz5FlkVdM3WMdxfCjnbpwZsIu7/OLawvmlza8Gmwcs7GahmD0+IzTl6GEbcWF+T+t6Hbs16DPuqUlSkQYF/AxhCHozUdJ8tsFKtzuvWec6LROGiRFrhzIrQ/6prZVfEF7232VTr69FAERSjsKbnoApPgUF443zdX+swG9IqicVlOVV65M2qfostLEVX7txoTsd8xouiyh69NXVWGrDasXtCIGoN86GFt/dUrQDFHG7yOgdTBUCZrGbuZk13CH47mnDvp3Bx47dXmOAwDHUIK61cAIYLEdOSCQi7/6zOR1UFpqcEBmAzGtee8/HW9+EDVnCr1fU7Fz4lbvU3P7czENbJf55reLtRUFhRwV5iF80O40+aErBqVrgd57gVYvNnB1lo3HJuyz4Jt+IwWcBrcrmfrWBjJsGtb0DMJdI+Ivxd9OMEefZP0D72BBwnh6GNiAcGjT5xb7KJN6t26bgeA3c+EiaqUzkxjvsBCfYm8xJJULwIkjAce+T8t/KpfYccYgIlsjgExSvzY=
     on_success: always
+    on_failure: always
 sudo: required
 services:
 - docker
 script:
-- make all
+- make ${MAKE_JOB_ID}
