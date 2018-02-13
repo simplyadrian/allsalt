@@ -1,11 +1,11 @@
 env:
   matrix:
-    - MAKE_JOB_ID: build-centos
-    - MAKE_JOB_ID: build-centos-minion
-    - MAKE_JOB_ID: build-debian
-    - MAKE_JOB_ID: build-ubuntu
-    - MAKE_JOB_ID: build-ubuntu-2016
-    - MAKE_JOB_ID: build-ubuntu-minion
+    - MAKE_JOB_ID: test-build-centos
+    - MAKE_JOB_ID: test-build-centos-minion
+    - MAKE_JOB_ID: test-build-debian
+    - MAKE_JOB_ID: test-build-ubuntu
+    - MAKE_JOB_ID: test-build-ubuntu-2016
+    - MAKE_JOB_ID: test-build-ubuntu-minion
 notifications:
   email:
     recipients:
