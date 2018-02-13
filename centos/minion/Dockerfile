@@ -2,7 +2,7 @@ FROM centos:centos7
 
 MAINTAINER Adrian Herrera <adrian.herrera@intuitivetech.com>
 
-ENV salt_version 2017.7.2-1.el7.noarch
+ENV salt_version 2017.7.3-1.el7.noarch
 
 # Add salt repositories and install dependencies
 RUN yum -y update && \
