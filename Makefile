@@ -22,6 +22,10 @@ build-debian: ## build and publish a debian image with a salt master.
 	docker build -t simplyadrian/allsalt:debian_master_2017.7.2 debian/
 	@echo 'publish debian_master_2017.7.2 to simplyadrian/allsalt with Dockerhub autobuild'
 
+build-opensuse: ## build and publish a opensuse image with a salt master.
+	docker build -t simplyadrian/allsalt:opensuse_master_2017.7.2 opensuse/
+	@echo 'publish opensuse_master_2017.7.2 to simplyadrian/allsalt with Dockerhub autobuild'
+
 build-ubuntu: ## build and publish a ubuntu image with a salt master.
 	docker build -t simplyadrian/allsalt:ubuntu_master_2017.7.2 ubuntu/master-xenial/
 	@echo 'publish ubuntu_master_2017.7.2 to simplyadrian/allsalt with Dockerhub autobuild'
@@ -43,6 +47,9 @@ test-build-centos-minion: build-centos-minion
 test-build-debian: build-debian
 	docker rmi simplyadrian/allsalt:debian_master_2017.7.2
 
+test-build-opensuse: build-opensuse
+	docker rmi simplyadrian/allsalt:opensuse_master_2017.7.2
+
 test-build-ubuntu: build-ubuntu
 	docker rmi simplyadrian/allsalt:ubuntu_master_2017.7.2
 
@@ -52,4 +59,4 @@ test-build-ubuntu-2016: build-ubuntu-2016
 test-build-ubuntu-minion: build-ubuntu-minion
 	docker rmi simplyadrian/allsalt:ubuntu_minion_2017.7.2
 
-all: build-centos build-centos-minion build-debian build-ubuntu build-ubuntu-2016 build-ubuntu-minion ## build and publish all to Dockerhub with autobuild.
+all: build-centos build-centos-minion build-debian build-ubuntu build-ubuntu-2016 build-ubuntu-minion build-opensuse ## build and publish all to Dockerhub with autobuild.

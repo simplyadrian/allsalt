@@ -3,6 +3,7 @@ env:
     - MAKE_JOB_ID: test-build-centos
     - MAKE_JOB_ID: test-build-centos-minion
     - MAKE_JOB_ID: test-build-debian
+    - MAKE_JOB_ID: test-build-opensuse
     - MAKE_JOB_ID: test-build-ubuntu
     - MAKE_JOB_ID: test-build-ubuntu-2016
     - MAKE_JOB_ID: test-build-ubuntu-minion

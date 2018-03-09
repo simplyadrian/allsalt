@@ -26,6 +26,7 @@ Includes:
 - [`centos_master_2017.7.2`: (*centos_master_2017.7.2/Dockerfile*)](https://github.com/simplyadrian/allsalt/blob/master/centos/master/Dockerfile)
 - [`centos_minion_2017.7.2`: (*centos_minion_2017.7.2/Dockerfile*)](https://github.com/simplyadrian/allsalt/blob/master/centos/minion/Dockerfile)
 - [`debian_master_2017.7.2`: (*debian_master_2017.7.2/Dockerfile*)](https://github.com/simplyadrian/allsalt/blob/master/debian/Dockerfile)
+- [`opensuse_master_2017.7.2`: (*opensuse_master_2017.7.2/Dockerfile*)](https://github.com/simplyadrian/allsalt/blob/master/opensuse/Dockerfile)
 - [`ubuntu_master_2017.7.2`: (*ubuntu_master_2017.7.2/Dockerfile*)](https://github.com/simplyadrian/allsalt/blob/master/ubuntu/master-xenial/Dockerfile)
 - [`ubuntu_master_2016.11.3`: (*ubuntu_master_2016.11.3/Dockerfile*)](https://github.com/simplyadrian/allsalt/blob/master/ubuntu/master-2016.11.3/Dockerfile)
 - [`ubuntu_minion_2017.7.2`: (*ubuntu_minion_2017.7.2/Dockerfile*)](https://github.com/simplyadrian/allsalt/blob/master/ubuntu/minion/Dockerfile)
@@ -53,6 +54,14 @@ make build-centos-minion
 
 ```bash
 make build-debian
+```
+
+### OpenSuse
+
+##### opensuse master
+
+```bash
+make build-opensuse
 ```
 
 ### Ubuntu
