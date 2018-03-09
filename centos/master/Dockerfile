@@ -2,8 +2,6 @@ FROM centos:centos7
 
 MAINTAINER Adrian Herrera <adrian.herrera@intuitivetech.com>
 
-ENV salt_version 2017.7.3-1.el7.noarch
-
 # Add salt repositories and install dependencies
 RUN yum -y update && \
     yum install -y \
@@ -27,11 +25,11 @@ RUN cd /tmp && \
     python2.7 get-pip.py
 
 RUN yum install -y \
-	            salt-master-${salt_version} \
-	            salt-minion-${salt_version} \
-	            salt-ssh-${salt_version} \
-	            salt-cloud-${salt_version} \
-	            salt-api-${salt_version}
+	            salt-master.noarch \
+	            salt-minion.noarch \
+	            salt-ssh.noarch \
+	            salt-cloud.noarch \
+	            salt-api.noarch
 
 # Install ansible and its dependencies
 RUN pip install pyaml setuptools boto3 boto virtualenv credstash &&\
