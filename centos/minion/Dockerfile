@@ -2,8 +2,6 @@ FROM centos:centos7
 
 MAINTAINER Adrian Herrera <adrian.herrera@intuitivetech.com>
 
-ENV salt_version 2017.7.3-1.el7.noarch
-
 # Add salt repositories and install dependencies
 RUN yum -y update && \
     yum install -y \
@@ -26,7 +24,7 @@ RUN cd /tmp && \
     curl https://bootstrap.pypa.io/get-pip.py -O &&\
     python2.7 get-pip.py
 
-RUN yum install -y salt-minion-${salt_version} &&\
+RUN yum install -y salt-minion.noarch &&\
     yum clean all && rm -rf /tmp/* /var/tmp/*
 
 # Add Run File
