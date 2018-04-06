@@ -21,7 +21,7 @@ if [ $status -ne 0 ]; then
   exit $status
 fi
 
-sleep 30
+sleep 60
 
 salt-key --yes --accept-all
 
